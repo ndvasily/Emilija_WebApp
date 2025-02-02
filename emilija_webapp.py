@@ -53,7 +53,7 @@ for meal in ml_log:
     #st.write(meal)
     meal_edit = f"{meal[0]} - {meal[1]} ml - {meal[2]} - {meal[3]}"
     ml_log_str = ml_log_str + meal_edit
-st.text_area( "Log", value=ml_log_str, height=68)
+st.text_area( "Лог за храна:", value=ml_log_str, height=68)
 st.time_input("Заспа во:", key="sleep_time", step=300)
 st.button("Ok", key="sleep_ok")
 st.time_input("Се разбуди во:", key="wakeup_time", step=300)
