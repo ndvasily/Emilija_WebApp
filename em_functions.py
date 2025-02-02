@@ -1,26 +1,17 @@
 import csv
+from datetime import datetime, timedelta
 
-def get_ml_log(filepath='ml_log.txt'):
+
+def get_log(filepath):
     with open(filepath , 'r') as file:
         ml_logs = list(csv.reader(file))    # mnogu poprofi e vaka
     return ml_logs     # koj rezultat da go vrati taa funckija
 
 
-def write_ml_log(ml_arg, filepath='ml_log.txt'):
+def write_log(ml_arg, filepath):
     with open(filepath, 'a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(ml_arg)
-
-
-def get_sleep_log(filepath='Todos.txt' ):
-    with open(filepath , 'r') as file:
-        ml_logs = file.readlines()    # mnogu poprofi e vaka
-    return ml_logs
-
-
-def write_sleep_log(todos_arg, filepath='Todos.txt' ):
-    with open(filepath, 'w') as file:  # zapishuvanje na nov file so skraten metod (WITH)
-        file.writelines(todos_arg)
 
 
 # ----------  FEED  -----------
@@ -66,4 +57,25 @@ def get_total_ml(ml_log):
 
 # ---------- SLEEP  ----------
 def get_sleep_log_str(sleep_log):
-    d
+    sleep_log_str = ''
+    for sleep in sleep_log:
+        time1 = datetime.strptime(sleep[0], '%H:%M:%S')
+        if sleep[1] == "0":
+            status = "Заспа"
+            sleep_edit = f"           {status} во {sleep[0]}  -  {sleep[2]}\n"
+        else:
+            status = "Се разбуди"
+            time2 = datetime.strptime(sleep[1], '%H:%M:%S')
+            slept = time2 - time1
+            sleep_edit = (f"{status} во {sleep[1]}  -  {sleep[2]}, "
+                          f"     спиела: {slept}\n")
+        sleep_log_str += sleep_edit
+    return sleep_log_str
+
+
+"""def get_total_sleep(sleep_log):
+    print("Hello get_total_sleep", sleep_log)
+
+
+def get_sleep_str(total_sleep_dic):
+    print("Hello from get_sleep_str", total_sleep_dic)"""
