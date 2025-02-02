@@ -1,6 +1,6 @@
 import csv
 
-filepath='ml_log.txt'
+filepath='ml_log.txxxxt'
 with open(filepath , 'r') as file:
     ml_logd = list(csv.reader(file, delimiter=","))    # mnogu poprofi e vaka
 
